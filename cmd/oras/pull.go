@@ -98,7 +98,7 @@ func runPull(opts pullOptions) error {
 	}
 
 	resolver := newResolver(opts.username, opts.password, opts.insecure, opts.plainHTTP, opts.configs...)
-	store := content.NewFileStore(opts.output)
+	store := content.NewFileStore(opts.output, content.WithIgnoreNoName())
 	defer store.Close()
 	store.DisableOverwrite = opts.keepOldFiles
 	store.AllowPathTraversalOnWrite = opts.pathTraversal
